@@ -1,0 +1,51 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: test_roles
+#------------------------------------------------------------
+
+CREATE TABLE test_roles(
+        id    Int  Auto_increment  NOT NULL ,
+        roles Varchar (50) NOT NULL
+	,CONSTRAINT test_roles_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: test_departments
+#------------------------------------------------------------
+
+CREATE TABLE test_departments(
+        id         Int  Auto_increment  NOT NULL ,
+        depNumbers Int NOT NULL ,
+        depName    Varchar (255) NOT NULL
+	,CONSTRAINT test_departments_PK PRIMARY KEY (id)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: test_user
+#------------------------------------------------------------
+
+CREATE TABLE test_user(
+        id                  Int  Auto_increment  NOT NULL ,
+        firstname           Varchar (50) NOT NULL ,
+        lastname            Varchar (50) NOT NULL ,
+        password            Varchar (50) NOT NULL ,
+        pseudo              Varchar (50) NOT NULL ,
+        mail                Varchar (255) NOT NULL ,
+        phone               Int NOT NULL ,
+        photo               Varchar (255) ,
+        infos               Text NOT NULL ,
+        id_test_roles       Int NOT NULL ,
+        id_test_departments Int NOT NULL
+	,CONSTRAINT test_user_PK PRIMARY KEY (id)
+
+	,CONSTRAINT test_user_test_roles_FK FOREIGN KEY (id_test_roles) REFERENCES test_roles(id)
+	,CONSTRAINT test_user_test_departments0_FK FOREIGN KEY (id_test_departments) REFERENCES test_departments(id)
+)ENGINE=InnoDB;
+
+
